@@ -1,17 +1,16 @@
 <script setup lang="ts">
 import { onMounted } from "vue";
 import "leaflet/dist/leaflet.css";
-import L from "leaflet";
+import L from "leaflet/dist/leaflet-src.js";
 
 onMounted(() => {
-  const myMap = L.map("map").setView([113.505, 32], 10);
-  L.tileLayer(
-    "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-    {
-      attribution:
-        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-    }
-  ).addTo(myMap);
+  const myMap = L.map("map").setView([32, 113.505], 10);
+  L.tileLayer("https://tile6.ishowchina.com/v3/tile/{z}/{x}/{y}.png", {
+    // attribution:
+    //   '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+  }).addTo(myMap);
+  L.control.scale({imperial:false}).addTo(myMap);
+  console.log(L, myMap);
 });
 </script>
 
@@ -23,17 +22,5 @@ onMounted(() => {
 #map {
   height: 100%;
   width: 100%;
-}
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
 }
 </style>
